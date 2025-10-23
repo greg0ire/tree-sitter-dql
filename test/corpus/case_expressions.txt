@@ -1,0 +1,172 @@
+================================================================================
+Simple CASE expression
+================================================================================
+
+SELECT u.name, CASE WHEN u.age < 18 THEN 'Minor' ELSE 'Adult' END FROM User u
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (single_valued_association_path_expression
+                    (identification_variable
+                      (identifier))
+                    (field_identification_variable
+                      (identifier)))))))))
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (case_expression
+                    (general_case_expression
+                      (when_clause
+                        (conditional_expression
+                          (conditional_term
+                            (conditional_factor
+                              (conditional_primary
+                                (simple_conditional_expression
+                                  (comparison_expression
+                                    (arithmetic_expression
+                                      (simple_arithmetic_expression
+                                        (arithmetic_term
+                                          (arithmetic_factor
+                                            (arithmetic_primary
+                                              (single_valued_association_path_expression
+                                                (identification_variable
+                                                  (identifier))
+                                                (field_identification_variable
+                                                  (identifier))))))))
+                                    (comparison_operator)
+                                    (arithmetic_expression
+                                      (simple_arithmetic_expression
+                                        (arithmetic_term
+                                          (arithmetic_factor
+                                            (arithmetic_primary
+                                              (literal
+                                                (integer_literal)))))))))))))
+                        (scalar_expression
+                          (string_primary
+                            (string_literal))))
+                      (scalar_expression
+                        (string_primary
+                          (string_literal))))))))))))
+    (from_clause
+      (identification_variable_declaration
+        (range_variable_declaration
+          (abstract_schema_name
+            (identifier))
+          (alias_identification_variable
+            (identifier)))))))
+
+================================================================================
+Multiple CASE WHEN clauses
+================================================================================
+
+SELECT u.name, 
+       CASE WHEN u.age < 18 THEN 'Minor' 
+            WHEN u.age < 65 THEN 'Adult' 
+            ELSE 'Senior' 
+       END as ageGroup 
+FROM User u
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (single_valued_association_path_expression
+                    (identification_variable
+                      (identifier))
+                    (field_identification_variable
+                      (identifier)))))))))
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (case_expression
+                    (general_case_expression
+                      (when_clause
+                        (conditional_expression
+                          (conditional_term
+                            (conditional_factor
+                              (conditional_primary
+                                (simple_conditional_expression
+                                  (comparison_expression
+                                    (arithmetic_expression
+                                      (simple_arithmetic_expression
+                                        (arithmetic_term
+                                          (arithmetic_factor
+                                            (arithmetic_primary
+                                              (single_valued_association_path_expression
+                                                (identification_variable
+                                                  (identifier))
+                                                (field_identification_variable
+                                                  (identifier))))))))
+                                    (comparison_operator)
+                                    (arithmetic_expression
+                                      (simple_arithmetic_expression
+                                        (arithmetic_term
+                                          (arithmetic_factor
+                                            (arithmetic_primary
+                                              (literal
+                                                (integer_literal)))))))))))))
+                        (scalar_expression
+                          (string_primary
+                            (string_literal))))
+                      (when_clause
+                        (conditional_expression
+                          (conditional_term
+                            (conditional_factor
+                              (conditional_primary
+                                (simple_conditional_expression
+                                  (comparison_expression
+                                    (arithmetic_expression
+                                      (simple_arithmetic_expression
+                                        (arithmetic_term
+                                          (arithmetic_factor
+                                            (arithmetic_primary
+                                              (single_valued_association_path_expression
+                                                (identification_variable
+                                                  (identifier))
+                                                (field_identification_variable
+                                                  (identifier))))))))
+                                    (comparison_operator)
+                                    (arithmetic_expression
+                                      (simple_arithmetic_expression
+                                        (arithmetic_term
+                                          (arithmetic_factor
+                                            (arithmetic_primary
+                                              (literal
+                                                (integer_literal)))))))))))))
+                        (scalar_expression
+                          (string_primary
+                            (string_literal))))
+                      (scalar_expression
+                        (string_primary
+                          (string_literal))))))))))
+        (alias_result_variable
+          (identifier))))
+    (from_clause
+      (identification_variable_declaration
+        (range_variable_declaration
+          (abstract_schema_name
+            (identifier))
+          (alias_identification_variable
+            (identifier)))))))

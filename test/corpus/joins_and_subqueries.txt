@@ -1,0 +1,244 @@
+================================================================================
+JOIN query
+================================================================================
+
+SELECT u, a FROM User u JOIN u.articles a
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (result_variable
+                    (identifier))))))))
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (result_variable
+                    (identifier)))))))))
+    (from_clause
+      (identification_variable_declaration
+        (range_variable_declaration
+          (abstract_schema_name
+            (identifier))
+          (alias_identification_variable
+            (identifier)))
+        (join
+          (join_association_declaration
+            (join_association_path_expression
+              (identification_variable
+                (identifier))
+              (field_identification_variable
+                (identifier)))
+            (alias_identification_variable
+              (identifier))))))))
+
+================================================================================
+Multiple JOINs with conditions
+================================================================================
+
+SELECT u, p, c FROM User u 
+LEFT JOIN u.profile p 
+INNER JOIN u.comments c 
+WHERE c.approved = true AND p.active = true
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (result_variable
+                    (identifier))))))))
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (result_variable
+                    (identifier))))))))
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (result_variable
+                    (identifier)))))))))
+    (from_clause
+      (identification_variable_declaration
+        (range_variable_declaration
+          (abstract_schema_name
+            (identifier))
+          (alias_identification_variable
+            (identifier)))
+        (join
+          (join_association_declaration
+            (join_association_path_expression
+              (identification_variable
+                (identifier))
+              (field_identification_variable
+                (identifier)))
+            (alias_identification_variable
+              (identifier))))
+        (join
+          (join_association_declaration
+            (join_association_path_expression
+              (identification_variable
+                (identifier))
+              (field_identification_variable
+                (identifier)))
+            (alias_identification_variable
+              (identifier))))))
+    (where_clause
+      (conditional_expression
+        (conditional_term
+          (conditional_term
+            (conditional_factor
+              (conditional_primary
+                (simple_conditional_expression
+                  (comparison_expression
+                    (arithmetic_expression
+                      (simple_arithmetic_expression
+                        (arithmetic_term
+                          (arithmetic_factor
+                            (arithmetic_primary
+                              (single_valued_association_path_expression
+                                (identification_variable
+                                  (identifier))
+                                (field_identification_variable
+                                  (identifier))))))))
+                    (comparison_operator)
+                    (arithmetic_expression
+                      (simple_arithmetic_expression
+                        (arithmetic_term
+                          (arithmetic_factor
+                            (arithmetic_primary
+                              (result_variable
+                                (identifier))))))))))))
+          (conditional_factor
+            (conditional_primary
+              (simple_conditional_expression
+                (comparison_expression
+                  (arithmetic_expression
+                    (simple_arithmetic_expression
+                      (arithmetic_term
+                        (arithmetic_factor
+                          (arithmetic_primary
+                            (single_valued_association_path_expression
+                              (identification_variable
+                                (identifier))
+                              (field_identification_variable
+                                (identifier))))))))
+                  (comparison_operator)
+                  (arithmetic_expression
+                    (simple_arithmetic_expression
+                      (arithmetic_term
+                        (arithmetic_factor
+                          (arithmetic_primary
+                            (identification_variable
+                              (identifier))))))))))))))))
+
+================================================================================
+Subquery in WHERE clause
+================================================================================
+
+SELECT u FROM User u WHERE u.id IN (SELECT a.userId FROM Article a WHERE a.published = true)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (select_clause
+      (select_expression
+        (scalar_expression
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (result_variable
+                    (identifier)))))))))
+    (from_clause
+      (identification_variable_declaration
+        (range_variable_declaration
+          (abstract_schema_name
+            (identifier))
+          (alias_identification_variable
+            (identifier)))))
+    (where_clause
+      (conditional_expression
+        (conditional_term
+          (conditional_factor
+            (conditional_primary
+              (simple_conditional_expression
+                (in_expression
+                  (arithmetic_expression
+                    (simple_arithmetic_expression
+                      (arithmetic_term
+                        (arithmetic_factor
+                          (arithmetic_primary
+                            (single_valued_association_path_expression
+                              (identification_variable
+                                (identifier))
+                              (field_identification_variable
+                                (identifier))))))))
+                  (select_statement
+                    (select_clause
+                      (select_expression
+                        (scalar_expression
+                          (simple_arithmetic_expression
+                            (arithmetic_term
+                              (arithmetic_factor
+                                (arithmetic_primary
+                                  (single_valued_association_path_expression
+                                    (identification_variable
+                                      (identifier))
+                                    (field_identification_variable
+                                      (identifier))))))))))
+                    (from_clause
+                      (identification_variable_declaration
+                        (range_variable_declaration
+                          (abstract_schema_name
+                            (identifier))
+                          (alias_identification_variable
+                            (identifier)))))
+                    (where_clause
+                      (conditional_expression
+                        (conditional_term
+                          (conditional_factor
+                            (conditional_primary
+                              (simple_conditional_expression
+                                (comparison_expression
+                                  (arithmetic_expression
+                                    (simple_arithmetic_expression
+                                      (arithmetic_term
+                                        (arithmetic_factor
+                                          (arithmetic_primary
+                                            (single_valued_association_path_expression
+                                              (identification_variable
+                                                (identifier))
+                                              (field_identification_variable
+                                                (identifier))))))))
+                                  (comparison_operator)
+                                  (arithmetic_expression
+                                    (simple_arithmetic_expression
+                                      (arithmetic_term
+                                        (arithmetic_factor
+                                          (arithmetic_primary
+                                            (result_variable
+                                              (identifier))))))))))))))))))))))))

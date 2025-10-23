@@ -1,0 +1,95 @@
+================================================================================
+UPDATE query
+================================================================================
+
+UPDATE User u SET u.name = 'Jane' WHERE u.id = 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (update_statement
+    (update_clause
+      (abstract_schema_name
+        (identifier))
+      (alias_identification_variable
+        (identifier))
+      (update_item
+        (state_field_path_expression
+          (identification_variable
+            (identifier))
+          (state_field
+            (field_identification_variable
+              (identifier))))
+        (new_value
+          (simple_arithmetic_expression
+            (arithmetic_term
+              (arithmetic_factor
+                (arithmetic_primary
+                  (literal
+                    (string_literal)))))))))
+    (where_clause
+      (conditional_expression
+        (conditional_term
+          (conditional_factor
+            (conditional_primary
+              (simple_conditional_expression
+                (comparison_expression
+                  (arithmetic_expression
+                    (simple_arithmetic_expression
+                      (arithmetic_term
+                        (arithmetic_factor
+                          (arithmetic_primary
+                            (single_valued_association_path_expression
+                              (identification_variable
+                                (identifier))
+                              (field_identification_variable
+                                (identifier))))))))
+                  (comparison_operator)
+                  (arithmetic_expression
+                    (simple_arithmetic_expression
+                      (arithmetic_term
+                        (arithmetic_factor
+                          (arithmetic_primary
+                            (literal
+                              (integer_literal))))))))))))))))
+
+================================================================================
+DELETE query
+================================================================================
+
+DELETE FROM User u WHERE u.active = false
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (delete_statement
+    (delete_clause
+      (abstract_schema_name
+        (identifier))
+      (alias_identification_variable
+        (identifier)))
+    (where_clause
+      (conditional_expression
+        (conditional_term
+          (conditional_factor
+            (conditional_primary
+              (simple_conditional_expression
+                (comparison_expression
+                  (arithmetic_expression
+                    (simple_arithmetic_expression
+                      (arithmetic_term
+                        (arithmetic_factor
+                          (arithmetic_primary
+                            (single_valued_association_path_expression
+                              (identification_variable
+                                (identifier))
+                              (field_identification_variable
+                                (identifier))))))))
+                  (comparison_operator)
+                  (arithmetic_expression
+                    (simple_arithmetic_expression
+                      (arithmetic_term
+                        (arithmetic_factor
+                          (arithmetic_primary
+                            (identification_variable
+                              (identifier))))))))))))))))
