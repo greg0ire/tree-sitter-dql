@@ -10,7 +10,9 @@
         "dql"
       ],
       "injection-regex": "^dql$",
-      "class-name": "TreeSitterDql"
+      "class-name": "TreeSitterDql",
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm"
     }
   ],
   "metadata": {
