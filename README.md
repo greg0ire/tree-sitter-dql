@@ -32,15 +32,6 @@ To enable DQL highlighting in PHP heredoc/nowdoc blocks:
    to your editor's DQL queries directory
    - For Neovim: `~/.config/nvim/queries/dql/highlights.scm` and `~/.config/nvim/queries/dql/locals.scm`
 
-
-## Testing
-
-Run the test suite:
-```bash
-tree-sitter test      # Grammar tests
-npm test             # Node.js binding tests
-```
-
 ## Installation
 
 1. Clone this repository
