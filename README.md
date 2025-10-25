@@ -6,6 +6,9 @@ query language used by Doctrine ORM in PHP.
 ## Usage
 
 ### PHP Integration
+
+![DQL inside PHP inside markdown](https://github.com/user-attachments/assets/08f05d56-8d0b-4b9b-8fe1-b8163ad4b65f)
+
 The most common use case is DQL embedded in PHP using heredoc/nowdoc syntax:
 
 ```php
