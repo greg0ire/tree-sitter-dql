@@ -6,28 +6,23 @@ SELECT COUNT(u) FROM User u
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (aggregate_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (result_variable
-                              (identifier))))))))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
+(QueryLanguage
+  (SelectStatement
+    (SelectClause
+      (SelectExpression
+        (AggregateExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (ResultVariable
+                    (identifier)))))))))
+    (FromClause
+      (IdentificationVariableDeclaration
+        (RangeVariableDeclaration
+          (AbstractSchemaName
             (identifier))
-          (alias_identification_variable
+          (AliasIdentificationVariable
             (identifier)))))))
 
 ================================================================================
@@ -38,31 +33,29 @@ SELECT AVG(u.age) FROM User u
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (aggregate_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (single_valued_association_path_expression
-                              (identification_variable
-                                (identifier))
-                              (field_identification_variable
-                                (identifier)))))))))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
+(QueryLanguage
+  (SelectStatement
+    (SelectClause
+      (SelectExpression
+        (AggregateExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (SingleValuedPathExpression
+                    (StateFieldPathExpression
+                      (IdentificationVariable
+                        (identifier))
+                      (StateField
+                        (SimpleStateField
+                          (FieldIdentificationVariable
+                            (identifier)))))))))))))
+    (FromClause
+      (IdentificationVariableDeclaration
+        (RangeVariableDeclaration
+          (AbstractSchemaName
             (identifier))
-          (alias_identification_variable
+          (AliasIdentificationVariable
             (identifier)))))))
 
 ================================================================================
@@ -75,87 +68,81 @@ HAVING COUNT(u) > 5
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (single_valued_association_path_expression
-                    (identification_variable
-                      (identifier))
-                    (field_identification_variable
-                      (identifier)))))))))
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (aggregate_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (result_variable
-                              (identifier)))))))))))))
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (aggregate_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (single_valued_association_path_expression
-                              (identification_variable
-                                (identifier))
-                              (field_identification_variable
-                                (identifier)))))))))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
+(QueryLanguage
+  (SelectStatement
+    (SelectClause
+      (SelectExpression
+        (ScalarExpression
+          (StateFieldPathExpression
+            (IdentificationVariable
+              (identifier))
+            (StateField
+              (SimpleStateField
+                (FieldIdentificationVariable
+                  (identifier)))))))
+      (SelectExpression
+        (AggregateExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (ResultVariable
+                    (identifier))))))))
+      (SelectExpression
+        (AggregateExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (SingleValuedPathExpression
+                    (StateFieldPathExpression
+                      (IdentificationVariable
+                        (identifier))
+                      (StateField
+                        (SimpleStateField
+                          (FieldIdentificationVariable
+                            (identifier)))))))))))))
+    (FromClause
+      (IdentificationVariableDeclaration
+        (RangeVariableDeclaration
+          (AbstractSchemaName
             (identifier))
-          (alias_identification_variable
+          (AliasIdentificationVariable
             (identifier)))))
-    (group_by_clause
-      (group_by_item
-        (single_valued_association_path_expression
-          (identification_variable
-            (identifier))
-          (field_identification_variable
-            (identifier)))))
-    (having_clause
-      (conditional_expression
-        (conditional_term
-          (conditional_factor
-            (conditional_primary
-              (simple_conditional_expression
-                (comparison_expression
-                  (arithmetic_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (aggregate_expression
-                              (simple_arithmetic_expression
-                                (arithmetic_term
-                                  (arithmetic_factor
-                                    (arithmetic_primary
-                                      (result_variable
+    (GroupByClause
+      (GroupByItem
+        (SingleValuedPathExpression
+          (StateFieldPathExpression
+            (IdentificationVariable
+              (identifier))
+            (StateField
+              (SimpleStateField
+                (FieldIdentificationVariable
+                  (identifier))))))))
+    (HavingClause
+      (ConditionalExpression
+        (ConditionalTerm
+          (ConditionalFactor
+            (ConditionalPrimary
+              (SimpleConditionalExpression
+                (ComparisonExpression
+                  (ArithmeticExpression
+                    (SimpleArithmeticExpression
+                      (ArithmeticTerm
+                        (ArithmeticFactor
+                          (ArithmeticPrimary
+                            (AggregateExpression
+                              (SimpleArithmeticExpression
+                                (ArithmeticTerm
+                                  (ArithmeticFactor
+                                    (ArithmeticPrimary
+                                      (ResultVariable
                                         (identifier))))))))))))
-                  (comparison_operator)
-                  (arithmetic_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (literal
-                              (integer_literal))))))))))))))))
+                  (ComparisonOperator)
+                  (ArithmeticExpression
+                    (SimpleArithmeticExpression
+                      (ArithmeticTerm
+                        (ArithmeticFactor
+                          (ArithmeticPrimary
+                             (Literal
+                               (integer))))))))))))))))

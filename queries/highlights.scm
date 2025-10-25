@@ -83,49 +83,45 @@
   "MOD"
   "BIT_AND"
   "BIT_OR"
-  "NAMED"
 ] @function.builtin
 
 ; Entity/Class names (PHP-style - these are the Doctrine entities)
-(abstract_schema_name
+(AbstractSchemaName
   (identifier) @type)
 
 ; Field references
-(single_valued_association_path_expression
-  (identification_variable) @variable
-  (field_identification_variable) @property)
+(SingleValuedAssociationPathExpression
+  (IdentificationVariable) @variable
+  (SingleValuedAssociationField) @property)
 
-(state_field_path_expression
-  (identification_variable) @variable
-  (state_field
-    (field_identification_variable) @property))
+(StateFieldPathExpression
+  (IdentificationVariable) @variable
+  (StateField
+    (SimpleStateField) @property))
 
 ; Variables and aliases
-(identification_variable) @variable
-(alias_identification_variable) @variable
-(result_variable) @variable
-(alias_result_variable) @variable
+(IdentificationVariable) @variable
+(AliasIdentificationVariable) @variable
+(ResultVariable) @variable
+(AliasResultVariable) @variable
 
 ; String literals
-(string_literal) @string
-(char_literal) @string
+(string) @string
+(char) @string
 
 ; Numeric literals
-(integer_literal) @number
-(float_literal) @number
+(integer) @number
+(float) @number
 
 ; Boolean literals
-(boolean_literal) @boolean
+(boolean) @boolean
 "true" @boolean
 "false" @boolean
 
 ; Parameters
-(named_parameter) @parameter
-(positional_parameter) @parameter
-(input_parameter) @parameter
-
-; Comments
-(comment) @comment
+(NamedParameter) @parameter
+(PositionalParameter) @parameter
+(InputParameter) @parameter
 
 ; Operators
 [
