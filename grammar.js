@@ -215,15 +215,17 @@ module.exports = grammar({
       )
     ),
 
-    // Join ::= ["LEFT" ["OUTER"] | "INNER"] "JOIN" (JoinAssociationDeclaration | RangeVariableDeclaration) ["WITH" ConditionalExpression]
+    // Join ::= ["LEFT" ["OUTER"] | "INNER"] "JOIN" (JoinAssociationDeclaration ["WITH" ConditionalExpression] | RangeVariableDeclaration [("WITH" | "ON") ConditionalExpression])
     join: $ => seq(
       optional(choice(
         seq(alias(/left/i, 'LEFT'), optional(alias(/outer/i, 'OUTER'))),
         alias(/inner/i, 'INNER')
       )),
       alias(/join/i, 'JOIN'),
-      choice($.join_association_declaration, $.range_variable_declaration),
-      optional(seq(alias(/with/i, 'WITH'), $.conditional_expression))
+      choice(
+        seq($.join_association_declaration, optional(seq(alias(/with/i, 'WITH'), $.conditional_expression))),
+        seq($.range_variable_declaration, optional(seq(choice(alias(/with/i, 'WITH'), alias(/on/i, 'ON')), $.conditional_expression)))
+      )
     ),
 
     // JoinAssociationDeclaration ::= JoinAssociationPathExpression ["AS"] AliasIdentificationVariable [IndexBy]

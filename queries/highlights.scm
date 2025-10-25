@@ -39,6 +39,7 @@
   "ELSE"
   "END"
   "WITH"
+  "ON"
   "NEW"
   "INSTANCE"
   "OF"

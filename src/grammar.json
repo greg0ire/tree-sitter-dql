@@ -973,39 +973,91 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "join_association_declaration"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "range_variable_declaration"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
               "type": "SEQ",
               "members": [
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "with",
-                    "flags": "i"
-                  },
-                  "named": false,
-                  "value": "WITH"
+                  "type": "SYMBOL",
+                  "name": "join_association_declaration"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "conditional_expression"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "PATTERN",
+                            "value": "with",
+                            "flags": "i"
+                          },
+                          "named": false,
+                          "value": "WITH"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "conditional_expression"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
                 }
               ]
             },
             {
-              "type": "BLANK"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "range_variable_declaration"
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "PATTERN",
+                                "value": "with",
+                                "flags": "i"
+                              },
+                              "named": false,
+                              "value": "WITH"
+                            },
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "PATTERN",
+                                "value": "on",
+                                "flags": "i"
+                              },
+                              "named": false,
+                              "value": "ON"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "conditional_expression"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
