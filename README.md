@@ -77,3 +77,9 @@ PHP queries. To do so, copy the contents of `php-dql-injections.scm` into your
 `~/.config/nvim/queries/php/injections.scm` file (create it if it does not exist).
 
 You should now have DQL highlighting in PHP heredoc/nowdoc blocks! 🎉
+
+## Bindings
+
+This parser cannot be used from other languages because I removed the default
+bindings. If you think they could be useful, for your use case, please send a
+PR restoring whichever bindings you need and I will publish them.
