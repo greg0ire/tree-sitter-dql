@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-dql",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Language used by Doctrine ORM to query PHP objects",
   "repository": "https://github.com/greg0ire/dql-treesitter",
   "license": "MIT",
