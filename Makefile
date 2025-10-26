@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-dql
 HOMEPAGE_URL := https://github.com/greg0ire/dql-treesitter
-VERSION := 1.0.0
+VERSION := 1.1.0
 
 # repository
 SRC_DIR := src
