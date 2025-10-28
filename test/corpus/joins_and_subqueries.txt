@@ -6,40 +6,41 @@ SELECT u, a FROM User u JOIN u.articles a
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
+(QueryLanguage
+  (SelectStatement
+    (SelectClause
+      (SelectExpression
+        (ScalarExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (ResultVariable
                     (identifier))))))))
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
+      (SelectExpression
+        (ScalarExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (ResultVariable
                     (identifier)))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
+    (FromClause
+      (IdentificationVariableDeclaration
+        (RangeVariableDeclaration
+          (AbstractSchemaName
             (identifier))
-          (alias_identification_variable
+          (AliasIdentificationVariable
             (identifier)))
-        (join
-          (join_association_declaration
-            (join_association_path_expression
-              (identification_variable
+        (Join
+          (JoinAssociationDeclaration
+            (JoinAssociationPathExpression
+              (IdentificationVariable
                 (identifier))
-              (field_identification_variable
-                (identifier)))
-            (alias_identification_variable
+              (CollectionValuedAssociationField
+                (FieldIdentificationVariable
+                  (identifier))))
+            (AliasIdentificationVariable
               (identifier))))))))
 
 ================================================================================
@@ -50,65 +51,69 @@ SELECT u, a FROM User u LEFT JOIN u.articles a WITH a.published = true
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
+(QueryLanguage
+  (SelectStatement
+    (SelectClause
+      (SelectExpression
+        (ScalarExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (ResultVariable
                     (identifier))))))))
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
+      (SelectExpression
+        (ScalarExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (ResultVariable
                     (identifier)))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
+    (FromClause
+      (IdentificationVariableDeclaration
+        (RangeVariableDeclaration
+          (AbstractSchemaName
             (identifier))
-          (alias_identification_variable
+          (AliasIdentificationVariable
             (identifier)))
-        (join
-          (join_association_declaration
-            (join_association_path_expression
-              (identification_variable
+        (Join
+          (JoinAssociationDeclaration
+            (JoinAssociationPathExpression
+              (IdentificationVariable
                 (identifier))
-              (field_identification_variable
-                (identifier)))
-            (alias_identification_variable
+               (CollectionValuedAssociationField
+                 (FieldIdentificationVariable
+                   (identifier))))
+            (AliasIdentificationVariable
               (identifier)))
-          (conditional_expression
-            (conditional_term
-              (conditional_factor
-                (conditional_primary
-                  (simple_conditional_expression
-                    (comparison_expression
-                      (arithmetic_expression
-                        (simple_arithmetic_expression
-                          (arithmetic_term
-                            (arithmetic_factor
-                              (arithmetic_primary
-                                (single_valued_association_path_expression
-                                  (identification_variable
+          (ConditionalExpression
+            (ConditionalTerm
+              (ConditionalFactor
+                (ConditionalPrimary
+                  (SimpleConditionalExpression
+                    (ComparisonExpression
+                      (ArithmeticExpression
+                        (SimpleArithmeticExpression
+                          (ArithmeticTerm
+                            (ArithmeticFactor
+                              (ArithmeticPrimary
+                                (SingleValuedPathExpression
+                                  (StateFieldPathExpression
+                                  (IdentificationVariable
                                     (identifier))
-                                  (field_identification_variable
-                                    (identifier))))))))
-                      (comparison_operator)
-                      (arithmetic_expression
-                        (simple_arithmetic_expression
-                          (arithmetic_term
-                            (arithmetic_factor
-                              (arithmetic_primary
-                                     (identification_variable
-                                        (identifier))))))))))))))))))
+                                        (StateField
+                                          (SimpleStateField
+                                            (FieldIdentificationVariable
+                                              (identifier)))))))))))
+                          (ComparisonOperator)
+                          (ArithmeticExpression
+                            (SimpleArithmeticExpression
+                              (ArithmeticTerm
+                                (ArithmeticFactor
+                                  (ArithmeticPrimary
+                                    (Literal
+                                      (boolean))))))))))))))))))
 
 ================================================================================
 Arbitrary JOIN with ON keyword
@@ -118,170 +123,63 @@ SELECT u FROM User u JOIN Banlist b ON u.email = b.email
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
-                    (identifier)))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
-            (identifier))
-          (alias_identification_variable
-            (identifier)))
-        (join
-          (range_variable_declaration
-            (abstract_schema_name
-              (identifier))
-            (alias_identification_variable
-              (identifier)))
-          (conditional_expression
-            (conditional_term
-              (conditional_factor
-                (conditional_primary
-                  (simple_conditional_expression
-                    (comparison_expression
-                      (arithmetic_expression
-                        (simple_arithmetic_expression
-                          (arithmetic_term
-                            (arithmetic_factor
-                              (arithmetic_primary
-                                (single_valued_association_path_expression
-                                  (identification_variable
-                                    (identifier))
-                                  (field_identification_variable
-                                    (identifier))))))))
-                      (comparison_operator)
-                      (arithmetic_expression
-                        (simple_arithmetic_expression
-                          (arithmetic_term
-                            (arithmetic_factor
-                                  (arithmetic_primary
-                                    (state_field_path_expression
-                                      (identification_variable
-                                        (identifier))
-                                      (state_field
-                                        (field_identification_variable
-                                          (identifier))))))))))))))))))))
-
-================================================================================
-Multiple JOINs with conditions
-================================================================================
-
-SELECT u, p, c FROM User u
-LEFT JOIN u.profile p
-INNER JOIN u.comments c 
-WHERE c.approved = true AND p.active = true
-
---------------------------------------------------------------------------------
-
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
-                    (identifier))))))))
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
-                    (identifier))))))))
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
-                    (identifier)))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
-            (identifier))
-          (alias_identification_variable
-            (identifier)))
-        (join
-          (join_association_declaration
-            (join_association_path_expression
-              (identification_variable
+    (QueryLanguage
+      (SelectStatement
+        (SelectClause
+          (SelectExpression
+            (ScalarExpression
+              (SimpleArithmeticExpression
+                (ArithmeticTerm
+                  (ArithmeticFactor
+                    (ArithmeticPrimary
+                      (ResultVariable
+                        (identifier)))))))))
+        (FromClause
+          (IdentificationVariableDeclaration
+            (RangeVariableDeclaration
+              (AbstractSchemaName
                 (identifier))
-              (field_identification_variable
+              (AliasIdentificationVariable
                 (identifier)))
-            (alias_identification_variable
-              (identifier))))
-        (join
-          (join_association_declaration
-            (join_association_path_expression
-              (identification_variable
-                (identifier))
-              (field_identification_variable
-                (identifier)))
-            (alias_identification_variable
-              (identifier))))))
-    (where_clause
-      (conditional_expression
-        (conditional_term
-          (conditional_term
-            (conditional_factor
-              (conditional_primary
-                (simple_conditional_expression
-                  (comparison_expression
-                    (arithmetic_expression
-                      (simple_arithmetic_expression
-                        (arithmetic_term
-                          (arithmetic_factor
-                            (arithmetic_primary
-                              (single_valued_association_path_expression
-                                (identification_variable
-                                  (identifier))
-                                (field_identification_variable
-                                  (identifier))))))))
-                    (comparison_operator)
-                    (arithmetic_expression
-                      (simple_arithmetic_expression
-                        (arithmetic_term
-                          (arithmetic_factor
-                            (arithmetic_primary
-                              (result_variable
-                                (identifier))))))))))))
-          (conditional_factor
-            (conditional_primary
-              (simple_conditional_expression
-                (comparison_expression
-                  (arithmetic_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (single_valued_association_path_expression
-                              (identification_variable
-                                (identifier))
-                              (field_identification_variable
-                                (identifier))))))))
-                  (comparison_operator)
-                  (arithmetic_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (identification_variable
-                              (identifier))))))))))))))))
+            (Join
+              (RangeVariableDeclaration
+                (AbstractSchemaName
+                  (identifier))
+                (AliasIdentificationVariable
+                  (identifier)))
+              (ConditionalExpression
+                (ConditionalTerm
+                  (ConditionalFactor
+                    (ConditionalPrimary
+                      (SimpleConditionalExpression
+                        (ComparisonExpression
+                          (ArithmeticExpression
+                            (SimpleArithmeticExpression
+                              (ArithmeticTerm
+                                (ArithmeticFactor
+                                  (ArithmeticPrimary
+                                    (SingleValuedPathExpression
+                                      (StateFieldPathExpression
+                                        (IdentificationVariable
+                                          (identifier))
+                                        (StateField
+                                          (SimpleStateField
+                                            (FieldIdentificationVariable
+                                              (identifier)))))))))))
+                          (ComparisonOperator)
+                          (ArithmeticExpression
+                            (SimpleArithmeticExpression
+                              (ArithmeticTerm
+                                (ArithmeticFactor
+                                  (ArithmeticPrimary
+                                    (SingleValuedPathExpression
+                                      (StateFieldPathExpression
+                                        (IdentificationVariable
+                                          (identifier))
+                                        (StateField
+                                          (SimpleStateField
+                                            (FieldIdentificationVariable
+                                              (identifier))))))))))))))))))))))
 
 ================================================================================
 Arbitrary JOIN with WITH keyword (backward compatibility)
@@ -291,58 +189,63 @@ SELECT u FROM User u JOIN Banlist b WITH u.email = b.email
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
+(QueryLanguage
+  (SelectStatement
+    (SelectClause
+      (SelectExpression
+        (ScalarExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (ResultVariable
                     (identifier)))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
+    (FromClause
+      (IdentificationVariableDeclaration
+        (RangeVariableDeclaration
+          (AbstractSchemaName
             (identifier))
-          (alias_identification_variable
+          (AliasIdentificationVariable
             (identifier)))
-        (join
-          (range_variable_declaration
-            (abstract_schema_name
+        (Join
+          (RangeVariableDeclaration
+            (AbstractSchemaName
               (identifier))
-            (alias_identification_variable
+            (AliasIdentificationVariable
               (identifier)))
-          (conditional_expression
-            (conditional_term
-              (conditional_factor
-                (conditional_primary
-                  (simple_conditional_expression
-                    (comparison_expression
-                      (arithmetic_expression
-                        (simple_arithmetic_expression
-                          (arithmetic_term
-                            (arithmetic_factor
-                              (arithmetic_primary
-                                (single_valued_association_path_expression
-                                  (identification_variable
-                                    (identifier))
-                                  (field_identification_variable
-                                    (identifier))))))))
-                      (comparison_operator)
-                      (arithmetic_expression
-                        (simple_arithmetic_expression
-                          (arithmetic_term
-                            (arithmetic_factor
-                              (arithmetic_primary
-                                (state_field_path_expression
-                                  (identification_variable
-                                    (identifier))
-                                  (state_field
-                                    (field_identification_variable
-                                      (identifier))))))))))))))))))))
+          (ConditionalExpression
+            (ConditionalTerm
+              (ConditionalFactor
+                (ConditionalPrimary
+                  (SimpleConditionalExpression
+                    (ComparisonExpression
+                      (ArithmeticExpression
+                        (SimpleArithmeticExpression
+                          (ArithmeticTerm
+                            (ArithmeticFactor
+                              (ArithmeticPrimary
+                                (SingleValuedPathExpression
+                                   (StateFieldPathExpression
+                                     (IdentificationVariable
+                                       (identifier))
+                                      (StateField
+                                        (SimpleStateField
+                                          (FieldIdentificationVariable
+                                            (identifier)))))))))))
+                       (ComparisonOperator)
+                       (ArithmeticExpression
+                         (SimpleArithmeticExpression
+                           (ArithmeticTerm
+                             (ArithmeticFactor
+                               (ArithmeticPrimary
+                                 (SingleValuedPathExpression
+                                   (StateFieldPathExpression
+                                     (IdentificationVariable
+                                       (identifier))
+                                     (StateField
+                                       (SimpleStateField
+                                         (FieldIdentificationVariable
+                                           (identifier))))))))))))))))))))))
 
 ================================================================================
 Subquery in WHERE clause
@@ -352,83 +255,87 @@ SELECT u FROM User u WHERE u.id IN (SELECT a.userId FROM Article a WHERE a.publi
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (select_statement
-    (select_clause
-      (select_expression
-        (scalar_expression
-          (simple_arithmetic_expression
-            (arithmetic_term
-              (arithmetic_factor
-                (arithmetic_primary
-                  (result_variable
+(QueryLanguage
+  (SelectStatement
+    (SelectClause
+      (SelectExpression
+        (ScalarExpression
+          (SimpleArithmeticExpression
+            (ArithmeticTerm
+              (ArithmeticFactor
+                (ArithmeticPrimary
+                  (ResultVariable
                     (identifier)))))))))
-    (from_clause
-      (identification_variable_declaration
-        (range_variable_declaration
-          (abstract_schema_name
+    (FromClause
+      (IdentificationVariableDeclaration
+        (RangeVariableDeclaration
+          (AbstractSchemaName
             (identifier))
-          (alias_identification_variable
+          (AliasIdentificationVariable
             (identifier)))))
-    (where_clause
-      (conditional_expression
-        (conditional_term
-          (conditional_factor
-            (conditional_primary
-              (simple_conditional_expression
-                (in_expression
-                  (arithmetic_expression
-                    (simple_arithmetic_expression
-                      (arithmetic_term
-                        (arithmetic_factor
-                          (arithmetic_primary
-                            (single_valued_association_path_expression
-                              (identification_variable
-                                (identifier))
-                              (field_identification_variable
-                                (identifier))))))))
-                  (select_statement
-                    (select_clause
-                      (select_expression
-                        (scalar_expression
-                          (simple_arithmetic_expression
-                            (arithmetic_term
-                              (arithmetic_factor
-                                (arithmetic_primary
-                                  (single_valued_association_path_expression
-                                    (identification_variable
-                                      (identifier))
-                                    (field_identification_variable
-                                      (identifier))))))))))
-                    (from_clause
-                      (identification_variable_declaration
-                        (range_variable_declaration
-                          (abstract_schema_name
+    (WhereClause
+      (ConditionalExpression
+        (ConditionalTerm
+          (ConditionalFactor
+            (ConditionalPrimary
+              (SimpleConditionalExpression
+                (InExpression
+                  (ArithmeticExpression
+                    (SimpleArithmeticExpression
+                      (ArithmeticTerm
+                        (ArithmeticFactor
+                          (ArithmeticPrimary
+                            (SingleValuedPathExpression
+                              (StateFieldPathExpression
+                                (IdentificationVariable
+                                  (identifier))
+                                (StateField
+                                  (SimpleStateField
+                                    (FieldIdentificationVariable
+                                      (identifier)))))))))))
+                  (Subselect
+                    (SimpleSelectClause
+                      (SimpleSelectExpression
+                        (StateFieldPathExpression
+                          (IdentificationVariable
                             (identifier))
-                          (alias_identification_variable
-                            (identifier)))))
-                    (where_clause
-                      (conditional_expression
-                        (conditional_term
-                          (conditional_factor
-                            (conditional_primary
-                              (simple_conditional_expression
-                                (comparison_expression
-                                  (arithmetic_expression
-                                    (simple_arithmetic_expression
-                                      (arithmetic_term
-                                        (arithmetic_factor
-                                          (arithmetic_primary
-                                            (single_valued_association_path_expression
-                                              (identification_variable
-                                                (identifier))
-                                              (field_identification_variable
-                                                (identifier))))))))
-                                  (comparison_operator)
-                                  (arithmetic_expression
-                                    (simple_arithmetic_expression
-                                      (arithmetic_term
-                                        (arithmetic_factor
-                                          (arithmetic_primary
-                                            (result_variable
-                                              (identifier))))))))))))))))))))))))
+                          (StateField
+                            (SimpleStateField
+                              (FieldIdentificationVariable
+                                (identifier)))))))
+                    (SubselectFromClause
+                      (SubselectIdentificationVariableDeclaration
+                        (IdentificationVariableDeclaration
+                          (RangeVariableDeclaration
+                            (AbstractSchemaName
+                              (identifier))
+                            (AliasIdentificationVariable
+                              (identifier))))))
+                    (WhereClause
+                      (ConditionalExpression
+                        (ConditionalTerm
+                          (ConditionalFactor
+                            (ConditionalPrimary
+                              (SimpleConditionalExpression
+                                (ComparisonExpression
+                                  (ArithmeticExpression
+                                    (SimpleArithmeticExpression
+                                      (ArithmeticTerm
+                                        (ArithmeticFactor
+                                          (ArithmeticPrimary
+                                            (SingleValuedPathExpression
+                                              (StateFieldPathExpression
+                                                (IdentificationVariable
+                                                  (identifier))
+                                                (StateField
+                                                  (SimpleStateField
+                                                    (FieldIdentificationVariable
+                                                      (identifier)))))))))))
+                                  (ComparisonOperator)
+                                  (ArithmeticExpression
+                                    (SimpleArithmeticExpression
+                                      (ArithmeticTerm
+                                        (ArithmeticFactor
+                                          (ArithmeticPrimary
+                                            (Literal
+                                              (boolean))))))))))))))))))))))))

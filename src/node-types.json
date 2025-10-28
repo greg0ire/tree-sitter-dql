@@ -1,6 +1,6 @@
 [
   {
-    "type": "abstract_schema_name",
+    "type": "AbstractSchemaName",
     "named": true,
     "fields": {},
     "children": {
@@ -19,22 +19,7 @@
     }
   },
   {
-    "type": "aggregate_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "simple_arithmetic_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "alias_identification_variable",
+    "type": "AggregateExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -42,14 +27,14 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "SimpleArithmeticExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "alias_result_variable",
+    "type": "AliasIdentificationVariable",
     "named": true,
     "fields": {},
     "children": {
@@ -64,7 +49,7 @@
     }
   },
   {
-    "type": "arithmetic_expression",
+    "type": "AliasResultVariable",
     "named": true,
     "fields": {},
     "children": {
@@ -72,18 +57,14 @@
       "required": true,
       "types": [
         {
-          "type": "select_statement",
-          "named": true
-        },
-        {
-          "type": "simple_arithmetic_expression",
+          "type": "identifier",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "arithmetic_factor",
+    "type": "ArithmeticExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -91,14 +72,18 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic_primary",
+          "type": "SimpleArithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "Subselect",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "arithmetic_primary",
+    "type": "ArithmeticFactor",
     "named": true,
     "fields": {},
     "children": {
@@ -106,58 +91,69 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate_expression",
-          "named": true
-        },
-        {
-          "type": "case_expression",
-          "named": true
-        },
-        {
-          "type": "functions_returning_datetime",
-          "named": true
-        },
-        {
-          "type": "functions_returning_numerics",
-          "named": true
-        },
-        {
-          "type": "functions_returning_strings",
-          "named": true
-        },
-        {
-          "type": "identification_variable",
-          "named": true
-        },
-        {
-          "type": "input_parameter",
-          "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
-        },
-        {
-          "type": "result_variable",
-          "named": true
-        },
-        {
-          "type": "simple_arithmetic_expression",
-          "named": true
-        },
-        {
-          "type": "single_valued_association_path_expression",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
+          "type": "ArithmeticPrimary",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "arithmetic_term",
+    "type": "ArithmeticPrimary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AggregateExpression",
+          "named": true
+        },
+        {
+          "type": "CaseExpression",
+          "named": true
+        },
+        {
+          "type": "FunctionsReturningDateTime",
+          "named": true
+        },
+        {
+          "type": "FunctionsReturningNumerics",
+          "named": true
+        },
+        {
+          "type": "FunctionsReturningStrings",
+          "named": true
+        },
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "InputParameter",
+          "named": true
+        },
+        {
+          "type": "Literal",
+          "named": true
+        },
+        {
+          "type": "ResultVariable",
+          "named": true
+        },
+        {
+          "type": "SimpleArithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "SingleValuedPathExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ArithmeticTerm",
     "named": true,
     "fields": {},
     "children": {
@@ -165,18 +161,14 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic_factor",
-          "named": true
-        },
-        {
-          "type": "arithmetic_term",
+          "type": "ArithmeticFactor",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "between_expression",
+    "type": "BetweenExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -184,88 +176,179 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic_expression",
+          "type": "ArithmeticExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "boolean_literal",
+    "type": "BooleanPrimary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "InputParameter",
+          "named": true
+        },
+        {
+          "type": "StateFieldPathExpression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CaseExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CoalesceExpression",
+          "named": true
+        },
+        {
+          "type": "GeneralCaseExpression",
+          "named": true
+        },
+        {
+          "type": "NullifExpression",
+          "named": true
+        },
+        {
+          "type": "SimpleCaseExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CaseOperand",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "StateFieldPathExpression",
+          "named": true
+        },
+        {
+          "type": "TypeDiscriminator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CoalesceExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ScalarExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CollectionMemberExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "CollectionValuedPathExpression",
+          "named": true
+        },
+        {
+          "type": "EntityExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CollectionValuedAssociationField",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "FieldIdentificationVariable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CollectionValuedPathExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "CollectionValuedAssociationField",
+          "named": true
+        },
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ComparisonExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ArithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "ComparisonOperator",
+          "named": true
+        },
+        {
+          "type": "QuantifiedExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ComparisonOperator",
     "named": true,
     "fields": {}
   },
   {
-    "type": "boolean_primary",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "input_parameter",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "case_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "coalesce_expression",
-          "named": true
-        },
-        {
-          "type": "general_case_expression",
-          "named": true
-        },
-        {
-          "type": "nullif_expression",
-          "named": true
-        },
-        {
-          "type": "simple_case_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "case_operand",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "state_field_path_expression",
-          "named": true
-        },
-        {
-          "type": "type_discriminator",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "coalesce_expression",
+    "type": "ConditionalExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -273,14 +356,48 @@
       "required": true,
       "types": [
         {
-          "type": "scalar_expression",
+          "type": "ConditionalTerm",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "collection_member_expression",
+    "type": "ConditionalFactor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ConditionalPrimary",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ConditionalPrimary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ConditionalExpression",
+          "named": true
+        },
+        {
+          "type": "SimpleConditionalExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ConditionalTerm",
     "named": true,
     "fields": {},
     "children": {
@@ -288,50 +405,56 @@
       "required": true,
       "types": [
         {
-          "type": "collection_valued_path_expression",
-          "named": true
-        },
-        {
-          "type": "entity_expression",
+          "type": "ConditionalFactor",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "collection_valued_path_expression",
+    "type": "DateTimePrimary",
     "named": true,
-    "fields": {
-      "field": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "field_identification_variable",
-            "named": true
-          }
-        ]
-      },
-      "object": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identification_variable",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "DatetimePrimary",
+          "named": true
+        }
+      ]
     }
   },
   {
-    "type": "comment",
+    "type": "DatetimePrimary",
     "named": true,
-    "extra": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AggregateExpression",
+          "named": true
+        },
+        {
+          "type": "FunctionsReturningDateTime",
+          "named": true
+        },
+        {
+          "type": "InputParameter",
+          "named": true
+        },
+        {
+          "type": "StateFieldPathExpression",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "comparison_expression",
+    "type": "DeleteClause",
     "named": true,
     "fields": {},
     "children": {
@@ -339,27 +462,18 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic_expression",
+          "type": "AbstractSchemaName",
           "named": true
         },
         {
-          "type": "comparison_operator",
-          "named": true
-        },
-        {
-          "type": "quantified_expression",
+          "type": "AliasIdentificationVariable",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "comparison_operator",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "conditional_expression",
+    "type": "DeleteStatement",
     "named": true,
     "fields": {},
     "children": {
@@ -367,18 +481,18 @@
       "required": true,
       "types": [
         {
-          "type": "conditional_expression",
+          "type": "DeleteClause",
           "named": true
         },
         {
-          "type": "conditional_term",
+          "type": "WhereClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "conditional_factor",
+    "type": "EmbeddedClassStateField",
     "named": true,
     "fields": {},
     "children": {
@@ -386,14 +500,14 @@
       "required": true,
       "types": [
         {
-          "type": "conditional_primary",
+          "type": "FieldIdentificationVariable",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "conditional_primary",
+    "type": "EmptyCollectionComparisonExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -401,37 +515,14 @@
       "required": true,
       "types": [
         {
-          "type": "conditional_expression",
-          "named": true
-        },
-        {
-          "type": "simple_conditional_expression",
+          "type": "CollectionValuedPathExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "conditional_term",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "conditional_factor",
-          "named": true
-        },
-        {
-          "type": "conditional_term",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "datetime_primary",
+    "type": "EntityAsDtoArgumentExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -439,81 +530,14 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate_expression",
-          "named": true
-        },
-        {
-          "type": "functions_returning_datetime",
-          "named": true
-        },
-        {
-          "type": "input_parameter",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
+          "type": "IdentificationVariable",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "delete_clause",
-    "named": true,
-    "fields": {
-      "alias": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "alias_identification_variable",
-            "named": true
-          }
-        ]
-      },
-      "entity": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "abstract_schema_name",
-            "named": true
-          }
-        ]
-      },
-      "keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "DELETE",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "delete_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "delete_clause",
-          "named": true
-        },
-        {
-          "type": "where_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "empty_collection_comparison_expression",
+    "type": "EntityExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -521,33 +545,18 @@
       "required": true,
       "types": [
         {
-          "type": "collection_valued_path_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "entity_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "simple_entity_expression",
+          "type": "SimpleEntityExpression",
           "named": true
         },
         {
-          "type": "single_valued_association_path_expression",
+          "type": "SingleValuedAssociationPathExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "exists_expression",
+    "type": "ExistsExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -555,14 +564,14 @@
       "required": true,
       "types": [
         {
-          "type": "select_statement",
+          "type": "Subselect",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "field_identification_variable",
+    "type": "FieldIdentificationVariable",
     "named": true,
     "fields": {},
     "children": {
@@ -577,37 +586,7 @@
     }
   },
   {
-    "type": "from_clause",
-    "named": true,
-    "fields": {
-      "declarations": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "identification_variable_declaration",
-            "named": true
-          }
-        ]
-      },
-      "keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "FROM",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "fully_qualified_name",
+    "type": "FromClause",
     "named": true,
     "fields": {},
     "children": {
@@ -615,14 +594,14 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "IdentificationVariableDeclaration",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "function_declaration",
+    "type": "FunctionDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -630,22 +609,22 @@
       "required": true,
       "types": [
         {
-          "type": "functions_returning_datetime",
+          "type": "FunctionsReturningDateTime",
           "named": true
         },
         {
-          "type": "functions_returning_numerics",
+          "type": "FunctionsReturningNumerics",
           "named": true
         },
         {
-          "type": "functions_returning_strings",
+          "type": "FunctionsReturningStrings",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "functions_returning_datetime",
+    "type": "FunctionsReturningDateTime",
     "named": true,
     "fields": {},
     "children": {
@@ -653,18 +632,18 @@
       "required": false,
       "types": [
         {
-          "type": "arithmetic_primary",
+          "type": "ArithmeticPrimary",
           "named": true
         },
         {
-          "type": "string_primary",
+          "type": "StringPrimary",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "functions_returning_numerics",
+    "type": "FunctionsReturningNumerics",
     "named": true,
     "fields": {},
     "children": {
@@ -672,26 +651,26 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic_primary",
+          "type": "ArithmeticPrimary",
           "named": true
         },
         {
-          "type": "collection_valued_path_expression",
+          "type": "CollectionValuedPathExpression",
           "named": true
         },
         {
-          "type": "simple_arithmetic_expression",
+          "type": "SimpleArithmeticExpression",
           "named": true
         },
         {
-          "type": "string_primary",
+          "type": "StringPrimary",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "functions_returning_strings",
+    "type": "FunctionsReturningStrings",
     "named": true,
     "fields": {},
     "children": {
@@ -699,30 +678,30 @@
       "required": true,
       "types": [
         {
-          "type": "char_literal",
+          "type": "SimpleArithmeticExpression",
           "named": true
         },
         {
-          "type": "simple_arithmetic_expression",
+          "type": "SingleValuedAssociationPathExpression",
           "named": true
         },
         {
-          "type": "single_valued_association_path_expression",
+          "type": "StringPrimary",
           "named": true
         },
         {
-          "type": "string_literal",
+          "type": "char",
           "named": true
         },
         {
-          "type": "string_primary",
+          "type": "string",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "general_case_expression",
+    "type": "GeneralCaseExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -730,52 +709,33 @@
       "required": true,
       "types": [
         {
-          "type": "scalar_expression",
+          "type": "ScalarExpression",
           "named": true
         },
         {
-          "type": "when_clause",
+          "type": "WhenClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "group_by_clause",
+    "type": "GroupByClause",
     "named": true,
-    "fields": {
-      "items": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "group_by_item",
-            "named": true
-          }
-        ]
-      },
-      "keyword": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "BY",
-            "named": false
-          },
-          {
-            "type": "GROUP",
-            "named": false
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "GroupByItem",
+          "named": true
+        }
+      ]
     }
   },
   {
-    "type": "group_by_item",
+    "type": "GroupByItem",
     "named": true,
     "fields": {},
     "children": {
@@ -783,52 +743,37 @@
       "required": true,
       "types": [
         {
-          "type": "identification_variable",
+          "type": "IdentificationVariable",
           "named": true
         },
         {
-          "type": "result_variable",
+          "type": "ResultVariable",
           "named": true
         },
         {
-          "type": "single_valued_association_path_expression",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
+          "type": "SingleValuedPathExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "having_clause",
+    "type": "HavingClause",
     "named": true,
-    "fields": {
-      "condition": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "conditional_expression",
-            "named": true
-          }
-        ]
-      },
-      "keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "HAVING",
-            "named": false
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ConditionalExpression",
+          "named": true
+        }
+      ]
     }
   },
   {
-    "type": "identification_variable",
+    "type": "IdentificationVariable",
     "named": true,
     "fields": {},
     "children": {
@@ -843,7 +788,7 @@
     }
   },
   {
-    "type": "identification_variable_declaration",
+    "type": "IdentificationVariableDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -851,22 +796,22 @@
       "required": true,
       "types": [
         {
-          "type": "index_by",
+          "type": "IndexBy",
           "named": true
         },
         {
-          "type": "join",
+          "type": "Join",
           "named": true
         },
         {
-          "type": "range_variable_declaration",
+          "type": "RangeVariableDeclaration",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "in_expression",
+    "type": "InExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -874,22 +819,22 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic_expression",
+          "type": "ArithmeticExpression",
           "named": true
         },
         {
-          "type": "in_parameter",
+          "type": "InParameter",
           "named": true
         },
         {
-          "type": "select_statement",
+          "type": "Subselect",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "in_parameter",
+    "type": "InParameter",
     "named": true,
     "fields": {},
     "children": {
@@ -897,18 +842,18 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic_expression",
+          "type": "ArithmeticExpression",
           "named": true
         },
         {
-          "type": "input_parameter",
+          "type": "InputParameter",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "index_by",
+    "type": "IndexBy",
     "named": true,
     "fields": {},
     "children": {
@@ -916,18 +861,14 @@
       "required": true,
       "types": [
         {
-          "type": "single_valued_association_path_expression",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
+          "type": "SingleValuedPathExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "input_parameter",
+    "type": "InputParameter",
     "named": true,
     "fields": {},
     "children": {
@@ -935,18 +876,18 @@
       "required": true,
       "types": [
         {
-          "type": "named_parameter",
+          "type": "NamedParameter",
           "named": true
         },
         {
-          "type": "positional_parameter",
+          "type": "PositionalParameter",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "instance_of_expression",
+    "type": "InstanceOfExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -954,18 +895,18 @@
       "required": true,
       "types": [
         {
-          "type": "identification_variable",
+          "type": "IdentificationVariable",
           "named": true
         },
         {
-          "type": "instance_of_parameter",
+          "type": "InstanceOfParameter",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "instance_of_parameter",
+    "type": "InstanceOfParameter",
     "named": true,
     "fields": {},
     "children": {
@@ -973,18 +914,18 @@
       "required": true,
       "types": [
         {
-          "type": "abstract_schema_name",
+          "type": "AbstractSchemaName",
           "named": true
         },
         {
-          "type": "input_parameter",
+          "type": "InputParameter",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "join",
+    "type": "Join",
     "named": true,
     "fields": {},
     "children": {
@@ -992,22 +933,22 @@
       "required": true,
       "types": [
         {
-          "type": "conditional_expression",
+          "type": "ConditionalExpression",
           "named": true
         },
         {
-          "type": "join_association_declaration",
+          "type": "JoinAssociationDeclaration",
           "named": true
         },
         {
-          "type": "range_variable_declaration",
+          "type": "RangeVariableDeclaration",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "join_association_declaration",
+    "type": "JoinAssociationDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -1015,22 +956,22 @@
       "required": true,
       "types": [
         {
-          "type": "alias_identification_variable",
+          "type": "AliasIdentificationVariable",
           "named": true
         },
         {
-          "type": "index_by",
+          "type": "IndexBy",
           "named": true
         },
         {
-          "type": "join_association_path_expression",
+          "type": "JoinAssociationPathExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "join_association_path_expression",
+    "type": "JoinAssociationPathExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1038,18 +979,22 @@
       "required": true,
       "types": [
         {
-          "type": "field_identification_variable",
+          "type": "CollectionValuedAssociationField",
           "named": true
         },
         {
-          "type": "identification_variable",
+          "type": "IdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "SingleValuedAssociationField",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "like_expression",
+    "type": "LikeExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1057,22 +1002,22 @@
       "required": true,
       "types": [
         {
-          "type": "char_literal",
+          "type": "StringExpression",
           "named": true
         },
         {
-          "type": "string_expression",
+          "type": "StringPrimary",
           "named": true
         },
         {
-          "type": "string_primary",
+          "type": "char",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "literal",
+    "type": "Literal",
     "named": true,
     "fields": {},
     "children": {
@@ -1080,30 +1025,30 @@
       "required": true,
       "types": [
         {
-          "type": "boolean_literal",
+          "type": "boolean",
           "named": true
         },
         {
-          "type": "char_literal",
+          "type": "char",
           "named": true
         },
         {
-          "type": "float_literal",
+          "type": "float",
           "named": true
         },
         {
-          "type": "integer_literal",
+          "type": "integer",
           "named": true
         },
         {
-          "type": "string_literal",
+          "type": "string",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "named_parameter",
+    "type": "NamedParameter",
     "named": true,
     "fields": {},
     "children": {
@@ -1118,7 +1063,7 @@
     }
   },
   {
-    "type": "new_object_arg",
+    "type": "NewObjectArg",
     "named": true,
     "fields": {},
     "children": {
@@ -1126,30 +1071,30 @@
       "required": true,
       "types": [
         {
-          "type": "alias_result_variable",
+          "type": "AliasResultVariable",
           "named": true
         },
         {
-          "type": "identification_variable",
+          "type": "EntityAsDtoArgumentExpression",
           "named": true
         },
         {
-          "type": "new_object_expression",
+          "type": "NewObjectExpression",
           "named": true
         },
         {
-          "type": "scalar_expression",
+          "type": "ScalarExpression",
           "named": true
         },
         {
-          "type": "select_statement",
+          "type": "Subselect",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "new_object_expression",
+    "type": "NewObjectExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1157,18 +1102,18 @@
       "required": true,
       "types": [
         {
-          "type": "abstract_schema_name",
+          "type": "AbstractSchemaName",
           "named": true
         },
         {
-          "type": "new_object_arg",
+          "type": "NewObjectArg",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "new_value",
+    "type": "NewValue",
     "named": true,
     "fields": {},
     "children": {
@@ -1176,14 +1121,14 @@
       "required": false,
       "types": [
         {
-          "type": "simple_arithmetic_expression",
+          "type": "SimpleArithmeticExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "null_comparison_expression",
+    "type": "NullComparisonExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1191,95 +1136,42 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate_expression",
+          "type": "AggregateExpression",
           "named": true
         },
         {
-          "type": "coalesce_expression",
+          "type": "CoalesceExpression",
           "named": true
         },
         {
-          "type": "function_declaration",
+          "type": "FunctionDeclaration",
           "named": true
         },
         {
-          "type": "identification_variable",
+          "type": "IdentificationVariable",
           "named": true
         },
         {
-          "type": "input_parameter",
+          "type": "InputParameter",
           "named": true
         },
         {
-          "type": "nullif_expression",
+          "type": "NullIfExpression",
           "named": true
         },
         {
-          "type": "result_variable",
+          "type": "ResultVariable",
           "named": true
         },
         {
-          "type": "single_valued_association_path_expression",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
+          "type": "SingleValuedPathExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "nullif_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "scalar_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "order_by_clause",
-    "named": true,
-    "fields": {
-      "items": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "order_by_item",
-            "named": true
-          }
-        ]
-      },
-      "keyword": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "BY",
-            "named": false
-          },
-          {
-            "type": "ORDER",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "order_by_item",
+    "type": "NullIfExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1287,34 +1179,14 @@
       "required": true,
       "types": [
         {
-          "type": "function_declaration",
-          "named": true
-        },
-        {
-          "type": "result_variable",
-          "named": true
-        },
-        {
-          "type": "scalar_expression",
-          "named": true
-        },
-        {
-          "type": "simple_arithmetic_expression",
-          "named": true
-        },
-        {
-          "type": "single_valued_association_path_expression",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
+          "type": "NullifExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "partial_field_set",
+    "type": "NullifExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1322,14 +1194,14 @@
       "required": true,
       "types": [
         {
-          "type": "field_identification_variable",
+          "type": "ScalarExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "partial_object_expression",
+    "type": "OrderByClause",
     "named": true,
     "fields": {},
     "children": {
@@ -1337,23 +1209,14 @@
       "required": true,
       "types": [
         {
-          "type": "identification_variable",
-          "named": true
-        },
-        {
-          "type": "partial_field_set",
+          "type": "OrderByItem",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "positional_parameter",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "quantified_expression",
+    "type": "OrderByItem",
     "named": true,
     "fields": {},
     "children": {
@@ -1361,40 +1224,64 @@
       "required": true,
       "types": [
         {
-          "type": "select_statement",
+          "type": "FunctionDeclaration",
+          "named": true
+        },
+        {
+          "type": "ResultVariable",
+          "named": true
+        },
+        {
+          "type": "ScalarExpression",
+          "named": true
+        },
+        {
+          "type": "SimpleArithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "SingleValuedPathExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "range_variable_declaration",
+    "type": "PartialFieldSet",
     "named": true,
-    "fields": {
-      "alias": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "alias_identification_variable",
-            "named": true
-          }
-        ]
-      },
-      "entity": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "abstract_schema_name",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "SimpleStateField",
+          "named": true
+        }
+      ]
     }
   },
   {
-    "type": "result_variable",
+    "type": "PartialObjectExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "PartialFieldSet",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PositionalParameter",
     "named": true,
     "fields": {},
     "children": {
@@ -1402,14 +1289,14 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "integer",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "scalar_expression",
+    "type": "QuantifiedExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1417,432 +1304,57 @@
       "required": true,
       "types": [
         {
-          "type": "boolean_primary",
-          "named": true
-        },
-        {
-          "type": "case_expression",
-          "named": true
-        },
-        {
-          "type": "datetime_primary",
-          "named": true
-        },
-        {
-          "type": "instance_of_expression",
-          "named": true
-        },
-        {
-          "type": "simple_arithmetic_expression",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
-          "named": true
-        },
-        {
-          "type": "string_primary",
+          "type": "Subselect",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "select_clause",
-    "named": true,
-    "fields": {
-      "distinct": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "DISTINCT",
-            "named": false
-          }
-        ]
-      },
-      "expressions": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          }
-        ]
-      },
-      "keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "SELECT",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "select_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "aggregate_expression",
-          "named": true
-        },
-        {
-          "type": "alias_result_variable",
-          "named": true
-        },
-        {
-          "type": "case_expression",
-          "named": true
-        },
-        {
-          "type": "function_declaration",
-          "named": true
-        },
-        {
-          "type": "identification_variable",
-          "named": true
-        },
-        {
-          "type": "new_object_expression",
-          "named": true
-        },
-        {
-          "type": "partial_object_expression",
-          "named": true
-        },
-        {
-          "type": "scalar_expression",
-          "named": true
-        },
-        {
-          "type": "select_statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "select_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "from_clause",
-          "named": true
-        },
-        {
-          "type": "group_by_clause",
-          "named": true
-        },
-        {
-          "type": "having_clause",
-          "named": true
-        },
-        {
-          "type": "order_by_clause",
-          "named": true
-        },
-        {
-          "type": "select_clause",
-          "named": true
-        },
-        {
-          "type": "where_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "simple_arithmetic_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arithmetic_term",
-          "named": true
-        },
-        {
-          "type": "simple_arithmetic_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "simple_case_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "case_operand",
-          "named": true
-        },
-        {
-          "type": "scalar_expression",
-          "named": true
-        },
-        {
-          "type": "simple_when_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "simple_conditional_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "between_expression",
-          "named": true
-        },
-        {
-          "type": "collection_member_expression",
-          "named": true
-        },
-        {
-          "type": "comparison_expression",
-          "named": true
-        },
-        {
-          "type": "empty_collection_comparison_expression",
-          "named": true
-        },
-        {
-          "type": "exists_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "instance_of_expression",
-          "named": true
-        },
-        {
-          "type": "like_expression",
-          "named": true
-        },
-        {
-          "type": "null_comparison_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "simple_entity_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identification_variable",
-          "named": true
-        },
-        {
-          "type": "input_parameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "simple_when_clause",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "scalar_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "single_valued_association_path_expression",
-    "named": true,
-    "fields": {
-      "field": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "field_identification_variable",
-            "named": true
-          }
-        ]
-      },
-      "object": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identification_variable",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "source_file",
+    "type": "QueryLanguage",
     "named": true,
     "root": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "delete_statement",
-          "named": true
-        },
-        {
-          "type": "select_statement",
-          "named": true
-        },
-        {
-          "type": "update_statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "state_field",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "field_identification_variable",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "state_field_path_expression",
-    "named": true,
-    "fields": {
-      "field": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "state_field",
-            "named": true
-          }
-        ]
-      },
-      "object": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identification_variable",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "string_expression",
-    "named": true,
-    "fields": {},
-    "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "result_variable",
+          "type": "DeleteStatement",
           "named": true
         },
         {
-          "type": "select_statement",
+          "type": "SelectStatement",
           "named": true
         },
         {
-          "type": "string_primary",
+          "type": "UpdateStatement",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "string_primary",
+    "type": "RangeVariableDeclaration",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "aggregate_expression",
+          "type": "AbstractSchemaName",
           "named": true
         },
         {
-          "type": "case_expression",
-          "named": true
-        },
-        {
-          "type": "functions_returning_strings",
-          "named": true
-        },
-        {
-          "type": "input_parameter",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
-          "named": true
-        },
-        {
-          "type": "string_literal",
+          "type": "AliasIdentificationVariable",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "type_discriminator",
+    "type": "ResultVariable",
     "named": true,
     "fields": {},
     "children": {
@@ -1857,57 +1369,46 @@
     }
   },
   {
-    "type": "update_clause",
+    "type": "ScalarExpression",
     "named": true,
-    "fields": {
-      "alias": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "alias_identification_variable",
-            "named": true
-          }
-        ]
-      },
-      "entity": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "abstract_schema_name",
-            "named": true
-          }
-        ]
-      },
-      "items": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "update_item",
-            "named": true
-          }
-        ]
-      },
-      "keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "UPDATE",
-            "named": false
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanPrimary",
+          "named": true
+        },
+        {
+          "type": "CaseExpression",
+          "named": true
+        },
+        {
+          "type": "DateTimePrimary",
+          "named": true
+        },
+        {
+          "type": "InstanceOfExpression",
+          "named": true
+        },
+        {
+          "type": "SimpleArithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "StateFieldPathExpression",
+          "named": true
+        },
+        {
+          "type": "StringPrimary",
+          "named": true
+        }
+      ]
     }
   },
   {
-    "type": "update_item",
+    "type": "SelectClause",
     "named": true,
     "fields": {},
     "children": {
@@ -1915,22 +1416,14 @@
       "required": true,
       "types": [
         {
-          "type": "new_value",
-          "named": true
-        },
-        {
-          "type": "single_valued_association_path_expression",
-          "named": true
-        },
-        {
-          "type": "state_field_path_expression",
+          "type": "SelectExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "update_statement",
+    "type": "SelectExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1938,18 +1431,46 @@
       "required": true,
       "types": [
         {
-          "type": "update_clause",
+          "type": "AggregateExpression",
           "named": true
         },
         {
-          "type": "where_clause",
+          "type": "AliasResultVariable",
+          "named": true
+        },
+        {
+          "type": "CaseExpression",
+          "named": true
+        },
+        {
+          "type": "FunctionDeclaration",
+          "named": true
+        },
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "NewObjectExpression",
+          "named": true
+        },
+        {
+          "type": "PartialObjectExpression",
+          "named": true
+        },
+        {
+          "type": "ScalarExpression",
+          "named": true
+        },
+        {
+          "type": "Subselect",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "when_clause",
+    "type": "SelectStatement",
     "named": true,
     "fields": {},
     "children": {
@@ -1957,41 +1478,548 @@
       "required": true,
       "types": [
         {
-          "type": "conditional_expression",
+          "type": "FromClause",
           "named": true
         },
         {
-          "type": "scalar_expression",
+          "type": "GroupByClause",
+          "named": true
+        },
+        {
+          "type": "HavingClause",
+          "named": true
+        },
+        {
+          "type": "OrderByClause",
+          "named": true
+        },
+        {
+          "type": "SelectClause",
+          "named": true
+        },
+        {
+          "type": "WhereClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "where_clause",
+    "type": "SimpleArithmeticExpression",
     "named": true,
-    "fields": {
-      "condition": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "conditional_expression",
-            "named": true
-          }
-        ]
-      },
-      "keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "WHERE",
-            "named": false
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ArithmeticTerm",
+          "named": true
+        }
+      ]
     }
+  },
+  {
+    "type": "SimpleCaseExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "CaseOperand",
+          "named": true
+        },
+        {
+          "type": "ScalarExpression",
+          "named": true
+        },
+        {
+          "type": "SimpleWhenClause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SimpleConditionalExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BetweenExpression",
+          "named": true
+        },
+        {
+          "type": "CollectionMemberExpression",
+          "named": true
+        },
+        {
+          "type": "ComparisonExpression",
+          "named": true
+        },
+        {
+          "type": "EmptyCollectionComparisonExpression",
+          "named": true
+        },
+        {
+          "type": "ExistsExpression",
+          "named": true
+        },
+        {
+          "type": "InExpression",
+          "named": true
+        },
+        {
+          "type": "InstanceOfExpression",
+          "named": true
+        },
+        {
+          "type": "LikeExpression",
+          "named": true
+        },
+        {
+          "type": "NullComparisonExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SimpleEntityExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "InputParameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SimpleSelectClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "SimpleSelectExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SimpleSelectExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "AggregateExpression",
+          "named": true
+        },
+        {
+          "type": "AliasResultVariable",
+          "named": true
+        },
+        {
+          "type": "FunctionDeclaration",
+          "named": true
+        },
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "ScalarExpression",
+          "named": true
+        },
+        {
+          "type": "StateFieldPathExpression",
+          "named": true
+        },
+        {
+          "type": "Subselect",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SimpleStateField",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "FieldIdentificationVariable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SimpleWhenClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ScalarExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SingleValuedAssociationField",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "FieldIdentificationVariable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SingleValuedAssociationPathExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "SingleValuedAssociationField",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SingleValuedPathExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "SingleValuedAssociationPathExpression",
+          "named": true
+        },
+        {
+          "type": "StateFieldPathExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "StateField",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "EmbeddedClassStateField",
+          "named": true
+        },
+        {
+          "type": "SimpleStateField",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "StateFieldPathExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "StateField",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "StringExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ResultVariable",
+          "named": true
+        },
+        {
+          "type": "StringPrimary",
+          "named": true
+        },
+        {
+          "type": "Subselect",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "StringPrimary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AggregateExpression",
+          "named": true
+        },
+        {
+          "type": "CaseExpression",
+          "named": true
+        },
+        {
+          "type": "FunctionsReturningStrings",
+          "named": true
+        },
+        {
+          "type": "InputParameter",
+          "named": true
+        },
+        {
+          "type": "StateFieldPathExpression",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Subselect",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "GroupByClause",
+          "named": true
+        },
+        {
+          "type": "HavingClause",
+          "named": true
+        },
+        {
+          "type": "OrderByClause",
+          "named": true
+        },
+        {
+          "type": "SimpleSelectClause",
+          "named": true
+        },
+        {
+          "type": "SubselectFromClause",
+          "named": true
+        },
+        {
+          "type": "WhereClause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SubselectFromClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "SubselectIdentificationVariableDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SubselectIdentificationVariableDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "IdentificationVariableDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeDiscriminator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "IdentificationVariable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "UpdateClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "AbstractSchemaName",
+          "named": true
+        },
+        {
+          "type": "AliasIdentificationVariable",
+          "named": true
+        },
+        {
+          "type": "UpdateItem",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "UpdateItem",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NewValue",
+          "named": true
+        },
+        {
+          "type": "SingleValuedPathExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "UpdateStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "UpdateClause",
+          "named": true
+        },
+        {
+          "type": "WhereClause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "WhenClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConditionalExpression",
+          "named": true
+        },
+        {
+          "type": "ScalarExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "WhereClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ConditionalExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "boolean",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "!=",
@@ -2022,19 +2050,11 @@
     "named": false
   },
   {
-    "type": "--",
-    "named": false
-  },
-  {
     "type": ".",
     "named": false
   },
   {
     "type": "/",
-    "named": false
-  },
-  {
-    "type": "/*",
     "named": false
   },
   {
@@ -2274,10 +2294,6 @@
     "named": false
   },
   {
-    "type": "NAMED",
-    "named": false
-  },
-  {
     "type": "NEW",
     "named": false
   },
@@ -2378,11 +2394,7 @@
     "named": false
   },
   {
-    "type": "\\",
-    "named": false
-  },
-  {
-    "type": "char_literal",
+    "type": "char",
     "named": true
   },
   {
@@ -2390,7 +2402,11 @@
     "named": false
   },
   {
-    "type": "float_literal",
+    "type": "float",
+    "named": true
+  },
+  {
+    "type": "fully_qualified_name",
     "named": true
   },
   {
@@ -2398,11 +2414,11 @@
     "named": true
   },
   {
-    "type": "integer_literal",
+    "type": "integer",
     "named": true
   },
   {
-    "type": "string_literal",
+    "type": "string",
     "named": true
   },
   {
